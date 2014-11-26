@@ -1,6 +1,6 @@
 Programming Interviews Problems
 
-This is repository where I share some solutions I've build for common problems.
+In this repo I share some solutions I've built for common software interview problems.
 
 Some of these problems are from : 
 

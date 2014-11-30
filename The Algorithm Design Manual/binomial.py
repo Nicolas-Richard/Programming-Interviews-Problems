@@ -9,7 +9,11 @@ def binomialCoefficient(n,k):
 	for i in range(1,n+1):
 		for j in range(1,n+1):
 			triangle[i][j]=triangle[i-1][j-1] + triangle[i-1][j]
-	print triangle
+	#print triangle
 	return triangle[n][k+2]	
 
-print binomialCoefficient(5,2)
+result= 0
+
+for i in range(1,19):
+	result += binomialCoefficient(20,i)
+print result	

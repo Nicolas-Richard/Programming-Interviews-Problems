@@ -14,5 +14,6 @@ class Solution:
         	lst.append(max(lst[i-1]+A[i], A[i]))
 
         return max(lst)	
+       
 
 s= Solution()

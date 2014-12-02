@@ -9,34 +9,35 @@ class TreeNode:
     def __init__(self, x):
         self.val = x
         self.left = None
-        self.right = None
+        self.right = Non
 
 class Solution:
 # @param root, a tree node
 # @return a boolean
     def isBalanced(self, root):
 
-        def getNodeDepth(node):
-            if(node==None):return 0
-
-            stack=[(node,1)]
-            dep=1
-
-            while(len(stack)): # Find the depth of the left and right tree iteratively
-                first,dep=stack.pop(0)
-                if(first.left!=None):
-                    stack.append((first.left,dep+1))
-                if(first.right!=None):
-                    stack.append((first.right,dep+1))
-            return dep;
-
         if(root==None):return True
-        l=getNodeDepth(root.left)
-        print l
-        r=getNodeDepth(root.right)
-        print r
+        l=self.getNodeDepth(root.left)
+        r=self.getNodeDepth(root.right)
 
         return (abs(l-r)<2) and self.isBalanced(root.left) and self.isBalanced(root.right) # because you can have a depth difference <2 , but one of the tree might still be unbalanced
+
+
+    def getNodeDepth(self, node):
+        if(node==None):return 0
+
+        stack=[(node,1)]
+        dep=1
+
+        while(len(stack)): # Find the depth of a tree iteratively
+            first,dep=stack.pop(0)
+            if(first.left!=None):
+                stack.append((first.left,dep+1))
+            if(first.right!=None):
+                stack.append((first.right,dep+1))
+        return dep;
+
+        
 
 '''
 class Solution:

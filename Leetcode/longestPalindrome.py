@@ -7,31 +7,28 @@
 class Solution:
     # @return a string
     def longestPalindrome(self, s):
-        # O(n^2) because of the two for loops
+        # O(n^3) because of the two for loops + it takes O(n) to compare the substrings together
         s = [l.lower() for l in s if l.isalnum()]
         longest=''
         
         for i in range(len(s)): # Two loops, this is essentially a bruteforce approach
-            for j in range(len(s)):
-                if s[i] == s[j]: #Some optimization
-                    if s[i:j+1] == s[i:j+1][::-1]:
-                        if j-i+1 > len(longest):
-                            longest = ''.join(s[i:j+1])
-                        else: # Some optimization
-                            j += j-i+1
-                            if j >= len(s):
-                                break
+            for j in range(i+1,len(s)):
+                if s[i:j+1] == s[i:j+1][::-1]:
+                    if j-i+1 > len(longest):
+                        longest = ''.join(s[i:j+1])
+
         return longest
         
     def allPalindrome(self, s): # return all palindroms, used for debugging.
     
         s = [l.lower() for l in s if l.isalnum()]
-        longest=[]
+        allPalindroms=[]
         
-        for i in range(len(s)):
-            for j in range(len(s)):
-                if s[i] == s[j]:
-                    if s[i:j+1] == s[i:j+1][::-1]:
-                        if j-i+1 > len(longest):
-                            longest.append(''.join(s[i:j+1]))
-        return longest                         
+        for i in range(len(s)): # Two loops, this is essentially a bruteforce approach
+            for j in range(i+1,len(s)):
+                if s[i:j+1] == s[i:j+1][::-1]:
+                    allPalindroms.append(''.join(s[i:j+1]))
+        return allPalindroms                         
+
+
+s = Solution()        

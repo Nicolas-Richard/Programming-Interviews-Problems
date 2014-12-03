@@ -1,7 +1,8 @@
 # The linear time solution is to use a suffix tree : http://en.wikipedia.org/wiki/Suffix_tree
 # Another solution is the Manacher's algo : http://en.wikipedia.org/wiki/Longest_palindromic_substring
+# Good explanations on Leetcode blog : leetcode.com/2011/11/longest-palindromic-substring-part-i.html
 
-# Doesn't pass the tests but works: https://oj.leetcode.com/problems/longest-palindromic-substring/
+# The only method that pass Leetcode tests is the one names longestPalindrome with the helper expandAroundCenter
 
 class Solution:
     # @return a string
@@ -26,9 +27,6 @@ class Solution:
             l -= 1
             r += 1
         return s[l+1:r]    
-
-
-
 
 
 

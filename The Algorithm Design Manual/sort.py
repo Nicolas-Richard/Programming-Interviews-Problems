@@ -5,6 +5,8 @@ from heapq import merge
 
 def quick_sort(lst):
 	
+	pivot = lst[0]
+
 
 
 def merge_sort(lst_input):
@@ -18,7 +20,7 @@ def merge_sort(lst_input):
 		left = merge_sort(lst_input[:n/2])
 		right = merge_sort(lst_input[n/2:])
 		global lst 								# Little trick to avoid having to keep the test case the same for every sort function
-		lst = list(merge(left,right))
+		lst = list(merge(left,right)) # sort of avoiding half of the exercise difficulty by using an already implemented merge function
 		return lst	
 
 

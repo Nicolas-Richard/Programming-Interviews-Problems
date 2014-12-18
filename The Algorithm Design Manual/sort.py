@@ -3,25 +3,78 @@ import copy
 from heapq import merge
 
 
-def quick_sort(lst):
+def quicksort_0(lst):
 	
-	pivot = lst[0]
+	if len(lst) < 1:
+		return lst
 
+	# pick randomly a pivot
 
+	pivot_index = len(lst)/2
 
-def merge_sort(lst_input):
+	# need to put everything that's bigger than pivot to it's right
+	# everything that is smaller to its left
 
- 	n = len(lst_input)
+	i = 0
 
-	if n < 2:
-		return lst_input
+	while i < pivot_index:
+		if lst[i] > lst[pivot_index]:
+			tmp = lst[i]
+			lst.remove(tmp)
+			lst.insert(pivot_index,tmp)
+			pivot_index -=1
+			i -= 1
+		i += 1
 
-	if n > 1:
-		left = merge_sort(lst_input[:n/2])
-		right = merge_sort(lst_input[n/2:])
-		global lst 								# Little trick to avoid having to keep the test case the same for every sort function
-		lst = list(merge(left,right)) # sort of avoiding half of the exercise difficulty by using an already implemented merge function
-		return lst	
+	i = len(lst) -1
+
+	while i > pivot_index:
+		if lst[i] < lst[pivot_index]:
+			tmp = lst[i]
+			lst.remove(tmp)
+			lst.insert(0,tmp)
+			pivot_index += 1
+			i +=1
+		i -=1	
+
+	print str(lst[:pivot_index]) + '*' + str([lst[pivot_index]]) + '*' + str(lst[pivot_index+1:])
+
+	return quick_sort(lst[:pivot_index]) + [lst[pivot_index]] + quick_sort(lst[pivot_index+1:])
+
+def quicksort(lst):
+    
+    if len(lst) < 2 : 
+        return lst 
+    
+    pivot = lst[0]
+    
+    greater = [x for x in lst[1:] if x > pivot ]
+    lesser = [x for x in lst[1:] if x <= pivot]
+    
+    print quicksort(lesser) + [pivot] + quicksort(greater)
+    
+
+def merge_perso(A,B):
+    
+    for b in B:
+        i = 0
+        while i < len(A) and A[i]< b:
+            i += 1
+        A.insert(i,b)
+    return A
+
+def merge_sort(A):
+    if len(A) <2:
+        return A
+    elif len(A) == 2:
+        if A[0] <= A[1]:
+            return A
+        else:
+            return [A[1],A[0]]
+    elif len(A) > 2:
+        return merge_perso(merge_sort(A[:len(A)/2]), merge_sort(A[len(A)/2:]))
+    
+print merge_sort([4,10,5,2,1])    
 
 
 def selection_sort(lst):
@@ -73,6 +126,6 @@ for i in range(10):
 lst_copy = copy.copy(lst)
 lst_copy.sort()
 
-print merge_sort(lst)
+print quick_sort(lst)
 
 print lst_copy == lst
